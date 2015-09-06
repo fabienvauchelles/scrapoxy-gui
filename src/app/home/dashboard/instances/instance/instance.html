@@ -1,0 +1,29 @@
+<div class="instance">
+    <div class="instance-info">
+        <div class="instance-status">
+            <div ng-switch="vm.container.content.status">
+                <div ng-switch-when="starting">
+                    <i class="fa fa-arrow-up"></i>
+                </div>
+
+                <div ng-switch-when="started">
+                    <i class="fa fa-check"></i>
+                </div>
+
+                <div ng-switch-when="stopping">
+                    <i class="fa fa-arrow-down"></i>
+                </div>
+
+                <div ng-switch-when="stopped">
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="instance-name" ng-bind="vm.container.content.name"></div>
+    </div>
+
+    <div class="instance-button" ng-click="vm.kill()">
+        <i class="fa fa-times"></i>
+    </div>
+</div>

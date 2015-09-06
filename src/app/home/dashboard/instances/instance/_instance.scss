@@ -1,0 +1,70 @@
+.instance {
+    position: relative;
+
+    width: 120px;
+    height: 120px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border: 1px solid $panel-default-border;
+    border-radius: 5px;
+
+    .instance-info {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+
+        margin-top: 20px;
+    }
+
+    .instance-button {
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+
+        background: #676767;
+        border-radius: 5px;
+
+        cursor: pointer;
+
+        opacity: 0;
+
+        .fa {
+            margin-top: 28px;
+            font-size: 60px;
+
+            color: #fff;
+        }
+
+        &:hover {
+            opacity: 1.0;
+        }
+    }
+
+    .instance-status {
+        .fa {
+            font-size: 60px;
+        }
+
+        .fa-check {
+            color: green;
+        }
+
+        .fa-times {
+            color: red;
+        }
+
+        .fa-arrow-up,
+        .fa-arrow-down {
+            color: orange;
+        }
+    }
+
+    .instance-name {
+        margin-top: 10px;
+
+        font-size: 12px;
+    }
+}

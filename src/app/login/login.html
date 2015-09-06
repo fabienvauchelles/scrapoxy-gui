@@ -1,0 +1,46 @@
+<div class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4">
+                <div class="login-logo">
+                    <img src="assets/images/logo400.png"/>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please sign in</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <form name="myForm"
+                              role="form"
+                              no-validate
+                              ng-submit="vm.login()">
+                            <fieldset>
+                                <div class="form-group"
+                                     ng-class="{'has-error': myForm.password.$invalid && myForm.password.$dirty}">
+                                    <input class="form-control"
+                                           placeholder="Password"
+                                           name="password"
+                                           type="password"
+                                           ng-model="vm.password"
+                                           required>
+                                    <span class="help-block"
+                                          ng-messages="myForm.password.$error"
+                                          ng-show="myForm.password.$invalid && myForm.password.$dirty">
+                                        <span ng-message="required">Password is empty</span>
+                                    </span>
+                                </div>
+
+                                <input class="btn btn-lg btn-success btn-block"
+                                       type="submit"
+                                       value="Login"
+                                       ng-disabled="myForm.$invalid">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

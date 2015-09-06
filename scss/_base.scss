@@ -1,0 +1,11 @@
+body {
+    margin-top: $navbar-height;
+
+    font-family: $text-font;
+    font-size: $font-size-base;
+    font-weight: 400;
+}
+
+a:hover {
+    cursor: pointer;
+}

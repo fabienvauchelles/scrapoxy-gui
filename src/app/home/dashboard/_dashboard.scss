@@ -1,0 +1,9 @@
+.dashboard {
+    margin-top: $navbar-height + 20px;
+
+    .panel-title small {
+        margin-left: 5px;
+
+        color: $gray-light;
+    }
+}

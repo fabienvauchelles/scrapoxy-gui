@@ -1,0 +1,19 @@
+/************************************
+ *   IMPORTS
+ ************************************/
+
+
+// Import settings
+@import "variables";
+
+
+// Bootstrap
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+
+// Fontawesome
+$fa-font-path: "../bower_components/fontawesome/fonts";
+
+@import "../bower_components/fontawesome/scss/font-awesome";

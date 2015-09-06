@@ -1,0 +1,25 @@
+{
+    "strict": true,
+    "bitwise": true,
+    "curly": true,
+    "eqeqeq": true,
+    "latedef": false,
+    "noarg": true,
+    "undef": true,
+    "unused": true,
+    "validthis": true,
+    "jasmine": true,
+    "globals": {
+        "_": false,
+        "angular": false,
+        "d3": false,
+        "inject": false,
+        "localStorage": false,
+        "module": false,
+        "moment": false,
+        "toastr": false,
+        "window": false,
+        "clazzHelper": false,
+        "metricsHelper": false
+    }
+}
