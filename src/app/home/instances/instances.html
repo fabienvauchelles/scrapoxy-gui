@@ -1,0 +1,72 @@
+<section class="instances">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            Instances
+
+                            <form class="form-inline pull-right" name="scalingForm">
+                                <div class="form-group"
+                                     ng-class="{'has-error': scalingForm.scalingMin.$invalid}">
+                                    <label for="scalingMin">Min:</label>
+                                    <input type="number"
+                                           class="form-control"
+                                           id="scalingMin"
+                                           name="scalingMin"
+                                           ng-model="vm.scaling.min"
+                                           ng-model-options="{debounce: { 'default': 500, 'blur': 0 } }"
+                                           ng-change="vm.updateScaling()"
+                                           required>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': scalingForm.scalingRequired.$invalid}">
+                                    <label for="scalingRequired">Required:</label>
+                                    <input type="number"
+                                           class="form-control"
+                                           id="scalingRequired"
+                                           name="scalingRequired"
+                                           ng-model="vm.scaling.required"
+                                           ng-model-options="{debounce: { 'default': 500, 'blur': 0 } }"
+                                           ng-change="vm.updateScaling()"
+                                           required>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': scalingForm.scalingMax.$invalid}">
+                                    <label for="scalingMax">Max:</label>
+                                    <input type="number"
+                                           class="form-control"
+                                           id="scalingMax"
+                                           name="scalingMax"
+                                           ng-model="vm.scaling.max"
+                                           ng-model-options="{debounce: { 'default': 500, 'blur': 0 } }"
+                                           ng-change="vm.updateScaling()"
+                                           required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-2"
+                                 ng-repeat="instance in vm.instances track by instance.content.name"
+                                 ng-show="vm.instances.length > 0">
+                                <instance container="instance"></instance>
+                            </div>
+
+                            <div class="col-sm-12 list-empty"
+                                 ng-show="vm.instances.length <= 0">
+                                <i class="icon icon-empty"></i>
+                                <span>No instance found</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

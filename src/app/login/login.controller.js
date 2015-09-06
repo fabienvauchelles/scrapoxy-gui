@@ -24,7 +24,7 @@
         function login() {
             LoginService.login(vm.password)
                 .then(function () {
-                    $state.go('home.dashboard');
+                    $state.go('home.instances');
                 })
                 .catch(function () {
                     ToastService.error('Invalid password');

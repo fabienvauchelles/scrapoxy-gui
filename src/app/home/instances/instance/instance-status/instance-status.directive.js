@@ -19,7 +19,7 @@
             },
             controller: controllerFunc,
             controllerAs: 'vm',
-            templateUrl: 'app/home/dashboard/instances/instance/instance-status/instance-status.html',
+            templateUrl: 'app/home/instances/instance/instance-status/instance-status.html',
         };
 
         return directive;
