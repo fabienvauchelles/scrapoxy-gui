@@ -2,9 +2,9 @@
     position: relative;
 
     width: 120px;
-    height: 120px;
+    height: 80px;
 
-    padding: 20px;
+    padding: 10px;
 
     text-align: center;
 
@@ -16,7 +16,7 @@
         left: 0; right: 0;
         top: 0; bottom: 0;
 
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .instance-button {
@@ -31,40 +31,23 @@
 
         opacity: 0;
 
-        .fa {
-            margin-top: 28px;
-            font-size: 60px;
+        .icon {
+            display: block;
+
+            margin-top: 18px;
+            font-size: 40px;
 
             color: #fff;
         }
 
         &:hover {
-            opacity: 1.0;
+            opacity: 0.8;
         }
     }
 
-    .instance-status {
-        .fa {
-            font-size: 60px;
-        }
-
-        .fa-check {
-            color: green;
-        }
-
-        .fa-times {
-            color: red;
-        }
-
-        .fa-arrow-up,
-        .fa-arrow-down {
-            color: orange;
-        }
-    }
-
-    .instance-name {
+    .instance-icons {
         margin-top: 10px;
 
-        font-size: 12px;
+        font-size: 18px;
     }
 }

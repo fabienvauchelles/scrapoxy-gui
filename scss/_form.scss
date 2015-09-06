@@ -16,5 +16,9 @@
         input[type='number'] {
             width: 50px;
         }
+
+        .form-group:not(:first-child) {
+            margin-left: 5px;
+        }
     }
 }

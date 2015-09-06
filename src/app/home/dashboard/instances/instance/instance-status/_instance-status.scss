@@ -1,0 +1,18 @@
+.instance-status {
+    display: inline-block;
+
+    margin-left: 5px;
+
+    .icon-started {
+        color: green;
+    }
+
+    .icon-stopped {
+        color: red;
+    }
+
+    .icon-starting,
+    .icon-stopping {
+        color: orange;
+    }
+}

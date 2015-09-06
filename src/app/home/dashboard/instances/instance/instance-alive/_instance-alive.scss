@@ -1,0 +1,13 @@
+.instance-alive {
+    display: inline-block;
+
+    margin-left: 5px;
+
+    .icon-alive {
+        color: green;
+    }
+
+    .icon-dead {
+        color: red;
+    }
+}

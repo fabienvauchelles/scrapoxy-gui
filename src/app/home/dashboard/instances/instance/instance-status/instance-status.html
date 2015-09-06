@@ -1,0 +1,23 @@
+<div class="instance-status">
+    <span ng-switch="vm.status">
+        <span ng-switch-when="started">
+            <i class="icon icon-started" title="Started"></i>
+        </span>
+
+        <span ng-switch-when="stopped">
+            <i class="icon icon-stopped" title="Stopped"></i>
+        </span>
+
+        <span ng-switch-when="starting">
+            <i class="icon icon-starting" title="Starting"></i>
+        </span>
+
+        <span ng-switch-when="stopping">
+            <i class="icon icon-stopping" title="Stopping"></i>
+        </span>
+
+        <span ng-switch-default>
+            <i class="icon icon-unknown" title="Unknown"></i>
+        </span>
+    </span>
+</div>
