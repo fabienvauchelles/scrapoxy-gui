@@ -10,7 +10,7 @@
         .module('myApp')
         .factory('EventsService', EventsService);
 
-    function EventsService($q, $rootScope) {
+    function EventsService($q, $log, $rootScope) {
         var socket;
 
         var factory = {
@@ -23,22 +23,25 @@
 
         ////////////
 
-        function start() {
+        function start(token) {
+            //$log.debug('[EventService] start');
+
             return new $q(function (resolve, reject) {
                 if (!window.io) {
                     reject(new Error('Cannot find socket.io'));
                 }
 
                 try {
-                    if (socket) {
-                        socket.close();
-                        socket = void 0;
-                    }
-
-                    socket = io.connect('', {path: '/api/socket.io'});
+                    socket = io.connect('', {
+                        path: '/api/socket.io',
+                        query: 'token=' + token,
+                        'force new connection': true,
+                    });
 
                     socket.on('event', function (data) {
                         var data = JSON.parse(data);
+
+                        //$log.debug("[EventService] event '%s': ", data.event, data.payload);
 
                         $rootScope.$apply(function () {
                             $rootScope.$emit(data.event, data.payload);
@@ -54,12 +57,9 @@
         }
 
         function stop() {
-            if (!socket) {
-                return;
-            }
+            //$log.debug('[EventService] stop');
 
-            socket.close();
-            socket = void 0;
+            socket.disconnect();
         }
     }
 

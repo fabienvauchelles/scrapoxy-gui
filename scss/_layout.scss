@@ -1,5 +1,12 @@
-.panel-title small {
-    margin-left: 5px;
+.panel-title {
+    small {
+        margin-left: 5px;
 
-    color: $gray-light;
+        color: $gray-light;
+    }
+
+    .form-group,
+    input {
+        display: inline-block;
+    }
 }

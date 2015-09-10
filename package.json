@@ -1,6 +1,14 @@
 {
     "name": "scrapoxy-gui",
     "version": "1.0.0",
+    "author": {
+        "name": "Fabien Vauchelles",
+        "email": "fabien@vauchelles.com",
+        "url": "http://fabien.vauchelles.com"
+    },
+    "url": "https://github.com/fabienvauchelles/scrapoxy-gui",
+    "repository": "fabienvauchelles/scrapoxy-gui",
+    "license": "MIT",
     "dependencies": {},
     "scripts": {
         "test": "gulp test"
