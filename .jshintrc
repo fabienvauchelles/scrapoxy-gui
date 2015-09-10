@@ -12,8 +12,11 @@
     "globals": {
         "_": false,
         "angular": false,
+        "btoa": false,
+        "c3": false,
         "d3": false,
         "inject": false,
+        "io": false,
         "localStorage": false,
         "module": false,
         "moment": false,

@@ -10,7 +10,7 @@
         .module('myApp')
         .factory('LoginService', LoginService);
 
-    function LoginService($q, $rootScope, Restangular) {
+    function LoginService($q) {
         var factory = {
             login: login,
             logout: logout,
@@ -23,7 +23,7 @@
         ////////////
 
         function login(password) {
-            return new $q(function(resolve, reject) {
+            return $q(function(resolve, reject) {
                 if (!password || password.length <= 0) {
                     return reject('Password is empty');
                 }

@@ -12,7 +12,7 @@
 
     function Config($urlRouterProvider) {
         // Default route
-        $urlRouterProvider.otherwise(function($injector, $location) {
+        $urlRouterProvider.otherwise(function($injector) {
             var $state = $injector.get('$state');
 
             $state.go('home.instances');
