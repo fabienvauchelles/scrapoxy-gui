@@ -10,16 +10,11 @@
         .module('myApp')
         .controller('InstancesController', InstancesController);
 
-    function InstancesController($rootScope, $scope, InstancesService, ScalingService, ToastService) {
+    function InstancesController(InstancesCacheService, ScalingCacheService, ToastService) {
         var vm = this;
 
         // Instances
         vm.instances = [];
-
-        var unwatchStatusUpdated = $rootScope.$on('status:updated', instanceUpdated),
-            unwatchAlivedUpdated = $rootScope.$on('alive:updated', instanceUpdated),
-            unwatchScalingUpdated = $rootScope.$on('scaling:updated', scalingUpdated);
-
 
         // Scaling
         vm.updateScaling = updateScaling;
@@ -30,62 +25,20 @@
             max: 0,
         };
 
-        // Unwatch
-        $scope.$on('$destroy', function () {
-            unwatchStatusUpdated();
-            unwatchAlivedUpdated();
-            unwatchScalingUpdated();
-        });
-
         // Load datas
         load();
 
 
         ////////////
 
-        function instanceUpdated(ev, instance) {
-            var idx = _.findIndex(vm.instances, {content: {name: instance.name}});
-            if (idx >= 0) {
-                if (instance.status === 'removed') {
-                    vm.instances.splice(idx, 1);
-
-                    ToastService.success('Instance ' + instance.name + ' removed.');
-                }
-                else {
-                    vm.instances[idx].content = instance;
-                }
-            }
-            else {
-                if (instance.status !== 'removed') {
-                    var container = {
-                        content: instance,
-                    };
-
-                    vm.instances.push(container);
-
-                    ToastService.success('Instance ' + instance.name + ' created.');
-                }
-            }
-        }
-
-        function scalingUpdated(ev, newscaling) {
-            vm.scaling = newscaling;
-
-            ToastService.success('Scaling updated.');
-        }
-
         function load() {
-            InstancesService
+            InstancesCacheService
                 .getAllInstances()
                 .then(function (instances) {
-                    vm.instances = instances.map(function (d) {
-                        return {
-                            content: d,
-                        };
-                    });
+                    vm.instances = instances;
                 });
 
-            ScalingService
+            ScalingCacheService
                 .getScaling()
                 .then(function (scaling) {
                     vm.scaling = scaling;
@@ -105,7 +58,7 @@
                 vm.scaling.max = vm.scaling.required;
             }
 
-            ScalingService
+            ScalingCacheService
                 .updateScaling(vm.scaling)
                 .catch(function (err) {
                     ToastService.error('Cannot update scaling: ' + err);

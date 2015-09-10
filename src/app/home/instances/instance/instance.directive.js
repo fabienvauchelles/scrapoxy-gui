@@ -28,7 +28,7 @@
         ////////////
 
         /* @ngInject */
-        function controllerFunc(InstancesService, ToastService) {
+        function controllerFunc(InstancesCacheService, ToastService) {
             var vm = this;
 
             vm.kill = kill;
@@ -37,7 +37,7 @@
             ////////////
 
             function kill() {
-                InstancesService
+                InstancesCacheService
                     .deleteInstance(vm.container.content.name)
                     .then(function () {
                         ToastService.success('Remove ' + vm.container.content.name + ' asked.');

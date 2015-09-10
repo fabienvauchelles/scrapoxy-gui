@@ -15,8 +15,7 @@
             restrict: 'E',
             scope: {},
             bindToController: {
-                config: '=',
-                data: '=',
+                content: '=',
             },
             controller: controllerFunc,
             controllerAs: 'vm',
@@ -34,7 +33,7 @@
             var margin = {top: 20, right: 50, bottom: 30, left: 50},
                 width = parseInt(d3.select(element[0]).style('width'), 10),
                 width = width - margin.left - margin.right,
-                height = 300 - margin.top - margin.bottom;
+                height = 200 - margin.top - margin.bottom;
 
 
             // Create container
@@ -57,7 +56,7 @@
             // Create X axis
             var x = d3.scale.linear()
                 .range([0, width])
-                .domain([0, vm.config.axis.x.max_items - 1]);
+                .domain([0, vm.content.config.axis.x.max_items - 1]);
 
             var xAxis = d3.svg.axis()
                 .scale(x)
@@ -73,7 +72,7 @@
             // Create Y axis
             var y = d3.scale.linear()
                 .range([height, 0])
-                .domain(d3.extent(vm.data));
+                .domain(d3.extent(vm.content.data));
 
             var yAxis = d3.svg.axis()
                 .scale(y)
@@ -88,7 +87,7 @@
                 .attr("y", 6)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
-                .text(vm.config.axis.y.legend);
+                .text(vm.content.config.axis.y.legend);
 
             // Create line
             var line = d3.svg.line()
@@ -99,12 +98,12 @@
                 .append('g')
                 .attr('clip-path', 'url(#clip)')
                 .append("path")
-                .datum(vm.data)
+                .datum(vm.content.data)
                 .attr("class", "line")
                 .attr("d", line);
 
             // Watch data changes
-            scope.$watchCollection('vm.data', dataUpdated);
+            scope.$watchCollection('vm.content.data', dataUpdated);
 
             // Watch resize
             window.addEventListener('resize', resize);
@@ -113,7 +112,7 @@
             ////////////
 
             function dataUpdated() {
-                y.domain(d3.extent(vm.data));
+                y.domain(d3.extent(vm.content.data));
 
                 var yAxis = d3.svg.axis()
                     .scale(y)
@@ -124,9 +123,14 @@
                     .call(yAxis);
 
                 path
-                    .attr("d", line);
+                    .attr('d', line);
+                    //.attr('transform', null)
+                    //.transition()
+                    //.duration(500)
+                    //.ease('linear')
+                    //.attr('transform', 'translate(' + x(-1) + ')');
 
-                if (vm.data.length > vm.config.axis.x.max_items) {
+                if (vm.content.data.length > vm.content.config.axis.x.max_items) {
                     path
                         .attr('transform', 'translate(' + x(-1) + ',0)');
                 }

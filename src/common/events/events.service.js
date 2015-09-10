@@ -23,7 +23,7 @@
 
         ////////////
 
-        function start() {
+        function start(token) {
             $log.debug('[EventService] start');
 
             return new $q(function (resolve, reject) {
@@ -32,12 +32,11 @@
                 }
 
                 try {
-                    if (socket) {
-                        socket.close();
-                        socket = void 0;
-                    }
-
-                    socket = io.connect('', {path: '/api/socket.io'});
+                    socket = io.connect('', {
+                        path: '/api/socket.io',
+                        query: 'token=' + token,
+                        'force new connection': true,
+                    });
 
                     socket.on('event', function (data) {
                         var data = JSON.parse(data);
@@ -60,12 +59,7 @@
         function stop() {
             $log.debug('[EventService] stop');
 
-            if (!socket) {
-                return;
-            }
-
-            socket.close();
-            socket = void 0;
+            socket.disconnect();
         }
     }
 
