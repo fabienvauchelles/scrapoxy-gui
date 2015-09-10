@@ -24,7 +24,7 @@
         ////////////
 
         function start(token) {
-            $log.debug('[EventService] start');
+            //$log.debug('[EventService] start');
 
             return new $q(function (resolve, reject) {
                 if (!window.io) {
@@ -41,7 +41,7 @@
                     socket.on('event', function (data) {
                         var data = JSON.parse(data);
 
-                        $log.debug("[EventService] event '%s': ", data.event, data.payload);
+                        //$log.debug("[EventService] event '%s': ", data.event, data.payload);
 
                         $rootScope.$apply(function () {
                             $rootScope.$emit(data.event, data.payload);
@@ -57,7 +57,7 @@
         }
 
         function stop() {
-            $log.debug('[EventService] stop');
+            //$log.debug('[EventService] stop');
 
             socket.disconnect();
         }
