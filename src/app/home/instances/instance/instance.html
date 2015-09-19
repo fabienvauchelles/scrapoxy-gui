@@ -3,11 +3,17 @@
         <div class="instance-name" ng-bind="vm.container.content.name"></div>
 
         <div class="instance-icons">
-            <instance-type type="{{vm.container.content.type}}"></instance-type>
+            <div class="instance-type">
+                <i class="icon" ng-class="vm.getCloudType(vm.container.content.type)"></i>
+            </div>
 
-            <instance-status status="{{vm.container.content.status}}"></instance-status>
+            <div class="instance-status">
+                <i class="icon" ng-class="vm.getStatus(vm.container.content.status)"></i>
+            </div>
 
-            <instance-alive alive="{{vm.container.content.alive}}"></instance-alive>
+            <div class="instance-alive">
+                <i class="icon" ng-class="vm.getAlive(vm.container.content.alive)"></i>
+            </div>
         </div>
     </div>
 

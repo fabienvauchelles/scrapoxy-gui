@@ -32,6 +32,9 @@
             var vm = this;
 
             vm.kill = kill;
+            vm.getCloudType = iconsHelper.getCloudType;
+            vm.getStatus = iconsHelper.getStatus;
+            vm.getAlive = iconsHelper.getAlive;
 
 
             ////////////

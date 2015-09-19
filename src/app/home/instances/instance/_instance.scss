@@ -50,4 +50,45 @@
 
         font-size: 18px;
     }
+
+    .instance-type {
+        display: inline-block;
+
+        .icon-aws-ec2 {
+            color: #f68536;
+        }
+    }
+
+    .instance-status {
+        display: inline-block;
+
+        margin-left: 5px;
+
+        .icon-started {
+            color: green;
+        }
+
+        .icon-stopped {
+            color: red;
+        }
+
+        .icon-starting,
+        .icon-stopping {
+            color: orange;
+        }
+    }
+
+    .instance-alive {
+        display: inline-block;
+
+        margin-left: 5px;
+
+        .icon-alive {
+            color: green;
+        }
+
+        .icon-dead {
+            color: red;
+        }
+    }
 }
