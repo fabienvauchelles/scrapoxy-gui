@@ -23,6 +23,34 @@ i.icon {
     -moz-osx-font-smoothing: grayscale;
 }
 
+// Icons colors
+.icon-aws-ec2 {
+    color: #f68536;
+}
+
+.icon-started {
+    color: green;
+}
+
+.icon-stopped {
+    color: red;
+}
+
+.icon-starting,
+.icon-stopping {
+    color: orange;
+}
+
+.icon-alive {
+    color: green;
+}
+
+.icon-dead {
+    color: red;
+}
+
+
+// Icons definition
 .icon-alive:before {
     content: "\e0f8";
 }

@@ -34,7 +34,7 @@
             vm.kill = kill;
             vm.getCloudType = iconsHelper.getCloudType;
             vm.getStatus = iconsHelper.getStatus;
-            vm.getAlive = iconsHelper.getAlive;
+            vm.isAlive = iconsHelper.isAlive;
 
 
             ////////////

@@ -3,7 +3,7 @@
 
     global.iconsHelper = (global.module || {}).exports = {
         getStatus: getStatus,
-        getAlive: getAlive,
+        isAlive: isAlive,
         getCloudType: getCloudType,
     };
 
@@ -34,7 +34,7 @@
         }
     }
 
-    function getAlive(alive) {
+    function isAlive(alive) {
         if (alive) {
             return 'icon-alive';
         }

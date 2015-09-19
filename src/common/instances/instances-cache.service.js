@@ -10,7 +10,7 @@
         .module('myApp')
         .factory('InstancesCacheService', InstancesCacheService);
 
-    function InstancesCacheService($q, $rootScope, InstancesService, ToastService) {
+    function InstancesCacheService($q, $log, $rootScope, InstancesService, ToastService) {
         var instances,
             instancesPromise;
 
@@ -66,7 +66,13 @@
                         ToastService.success('Instance ' + instance.name + ' removed.');
                     }
                     else {
+                        var msg = getMessage(instances[idx].content, instance);
+
                         instances[idx].content = instance;
+
+                        if (msg) {
+                            ToastService.success(msg);
+                        }
                     }
                 }
                 else {
@@ -79,6 +85,34 @@
 
                         ToastService.success('Instance ' + instance.name + ' created.');
                     }
+                    else {
+                        $log.info('Unknown instance ' + instance.name + ' removed.');
+                    }
+                }
+
+
+                ////////////
+
+                function getMessage(oldInstance, newInstance) {
+                    var msgs = ['Instance ' + newInstance.name + ' updated.'];
+
+                    if (oldInstance.status !== newInstance.status) {
+                        msgs.push(
+                            '<i class="icon ' + iconsHelper.getStatus(oldInstance.status) + '"></i>'
+                            + ' to '
+                            + '<i class="icon ' + iconsHelper.getStatus(newInstance.status) + '"></i>'
+                        );
+                    }
+
+                    if (oldInstance.alive !== newInstance.alive) {
+                        msgs.push(
+                            '<i class="icon ' + iconsHelper.isAlive(oldInstance.alive) + '"></i>'
+                            + ' to '
+                            + '<i class="icon ' + iconsHelper.isAlive(newInstance.alive) + '"></i>'
+                        );
+                    }
+
+                    return msgs.join('<br/>\n');
                 }
             }
         }
