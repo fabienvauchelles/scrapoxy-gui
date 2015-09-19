@@ -10,7 +10,7 @@
         .module('myApp')
         .controller('InstancesController', InstancesController);
 
-    function InstancesController(InstancesCacheService, ScalingCacheService, ToastService) {
+    function InstancesController($log, InstancesCacheService, ScalingCacheService, ToastService) {
         var vm = this;
 
         // Instances
@@ -36,12 +36,20 @@
                 .getAllInstances()
                 .then(function (instances) {
                     vm.instances = instances;
+                })
+                .catch(function(err) {
+                    $log.error(err);
+                    ToastService.error('Cannot load instances');
                 });
 
             ScalingCacheService
                 .getScaling()
                 .then(function (scaling) {
                     vm.scaling = scaling;
+                })
+                .catch(function(err) {
+                    $log.error(err);
+                    ToastService.error('Cannot load scaling');
                 });
         }
 
@@ -61,6 +69,7 @@
             ScalingCacheService
                 .updateScaling(vm.scaling)
                 .catch(function (err) {
+                    $log.error(err);
                     ToastService.error('Cannot update scaling: ' + err);
                 });
         }
