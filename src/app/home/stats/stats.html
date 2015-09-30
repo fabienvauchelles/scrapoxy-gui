@@ -28,8 +28,23 @@
                     </div>
 
                     <div class="panel-body">
-                        <ul>
-                            <li>
+                        <div class="row">
+                            <div class="stats-global-item col-sm-6">
+                                Count of requests: <span ng-bind="vm.global.rq_count"></span>
+                            </div>
+
+                            <div class="stats-global-item col-sm-6">
+                                Received: <span ng-bind="vm.global.kbytes_received"></span>kb
+                                / Sent: <span ng-bind="vm.global.kbytes_sent"></span>kb
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="stats-global-item col-sm-6">
+                                Stop orders: <span ng-bind="vm.global.stop_order_count"></span></li>
+                            </div>
+
+                            <div class="stats-global-item col-sm-6">
                                 Requests before stop (min/avg/max):
 
                                 <span ng-if="vm.global.rq_before_stop">
@@ -39,8 +54,8 @@
                                 </span>
 
                                 <span ng-if="!vm.global.rq_before_stop">none</span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

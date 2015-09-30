@@ -78,6 +78,12 @@
                 });
             }
 
+            data.global.kbytes_received = b2kb(data.global.bytes_received);
+            delete data.global.bytes_received;
+
+            data.global.kbytes_sent = b2kb(data.global.bytes_sent);
+            delete data.global.bytes_received;
+
             _.merge(vm.global, data.global);
         }
 
