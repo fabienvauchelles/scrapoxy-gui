@@ -40,7 +40,7 @@
                 this._buffer.label1 += item.label1;
                 this._buffer.label2 += item.label2;
 
-                ++this._bufferCount
+                ++this._bufferCount;
             }
             else {
                 if (this._avg1) {

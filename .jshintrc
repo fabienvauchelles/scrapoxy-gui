@@ -23,6 +23,8 @@
         "toastr": false,
         "window": false,
         "clazzHelper": false,
-        "metricsHelper": false
+        "iconsHelper": false,
+        "metricsHelper": false,
+        "timeWindowHelper": false
     }
 }

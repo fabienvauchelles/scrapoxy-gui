@@ -98,17 +98,17 @@
 
                     if (oldInstance.status !== newInstance.status) {
                         msgs.push(
-                            '<i class="icon ' + iconsHelper.getStatus(oldInstance.status) + '"></i>'
-                            + ' to '
-                            + '<i class="icon ' + iconsHelper.getStatus(newInstance.status) + '"></i>'
+                            '<i class="icon ' + iconsHelper.getStatus(oldInstance.status) + '"></i>' +
+                            ' to ' +
+                            '<i class="icon ' + iconsHelper.getStatus(newInstance.status) + '"></i>'
                         );
                     }
 
                     if (oldInstance.alive !== newInstance.alive) {
                         msgs.push(
-                            '<i class="icon ' + iconsHelper.isAlive(oldInstance.alive) + '"></i>'
-                            + ' to '
-                            + '<i class="icon ' + iconsHelper.isAlive(newInstance.alive) + '"></i>'
+                            '<i class="icon ' + iconsHelper.isAlive(oldInstance.alive) + '"></i>' +
+                            ' to ' +
+                            '<i class="icon ' + iconsHelper.isAlive(newInstance.alive) + '"></i>'
                         );
                     }
 

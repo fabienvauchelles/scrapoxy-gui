@@ -27,7 +27,7 @@
 
             if (retention) {
                 qs.retention = retention;
-            };
+            }
 
             return BASE
                 .get(qs)
