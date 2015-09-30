@@ -1,0 +1,23 @@
+.scaling {
+    label {
+        font-weight: normal;
+    }
+
+    input {
+        width: 60px !important;
+    }
+
+    .form-group:not(:last-child) {
+        input {
+            margin-right: 25px;
+        }
+    }
+
+    .help-block {
+        margin-top: 20px;
+
+        &.has-error {
+            color: $state-danger-text;
+        }
+    }
+}

@@ -11,6 +11,7 @@
             'ngMessages',
             'ui.router',
             'restangular',
+            'ui.bootstrap',
         ]);
 
 })();

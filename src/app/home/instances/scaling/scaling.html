@@ -1,0 +1,62 @@
+<div class="modal-container scaling">
+    <div class="modal-header">
+        <h3 class="modal-title">Update scaling</h3>
+    </div>
+
+    <div class="modal-body">
+        <form class="form-inline" name="scalingForm">
+            <div class="form-group"
+                 ng-class="{'has-error': scalingForm.scalingMin.$invalid}">
+                <label for="scalingMin">Min:</label>
+
+                <input type="number"
+                       class="form-control"
+                       id="scalingMin"
+                       name="scalingMin"
+                       ng-model="vm.scaling.min"
+                       required>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': scalingForm.scalingRequired.$invalid}">
+                <label for="scalingRequired">Required:</label>
+                <input type="number"
+                       class="form-control"
+                       id="scalingRequired"
+                       name="scalingRequired"
+                       ng-model="vm.scaling.required"
+                       scaling-validator scmin="vm.scaling.min" scmax="vm.scaling.max"
+                       required>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': scalingForm.scalingMax.$invalid}">
+                <label for="scalingMax">Max:</label>
+                <input type="number"
+                       class="form-control"
+                       id="scalingMax"
+                       name="scalingMax"
+                       ng-model="vm.scaling.max"
+                       required>
+            </div>
+
+            <div class="help-block has-error"
+                 ng-messages="scalingForm.$error"
+                 ng-show="scalingForm.$invalid">
+                <div ng-message="required">All fields are required</div>
+                <div ng-message="scmin">Required must be less or equal than Min</div>
+                <div ng-message="scmax">Required must be greater or equal than Max</div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary"
+                type="button"
+                ng-click="vm.ok()"
+                ng-disabled="scalingForm.$invalid">Update</button>
+        <button class="btn btn-warning"
+                type="button"
+                ng-click="vm.cancel()">Cancel</button>
+    </div>
+</div>

@@ -7,46 +7,15 @@
                         <div class="panel-title">
                             Instances
 
-                            <form class="form-inline pull-right" name="scalingForm">
-                                <div class="form-group"
-                                     ng-class="{'has-error': scalingForm.scalingMin.$invalid}">
-                                    <label for="scalingMin">Min:</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           id="scalingMin"
-                                           name="scalingMin"
-                                           ng-model="vm.scaling.min"
-                                           ng-model-options="{debounce: { 'default': 500, 'blur': 0 } }"
-                                           ng-change="vm.updateScaling()"
-                                           required>
-                                </div>
+                            <div class="instances-scaling pull-right">
+                                Min: <span ng-bind="vm.scaling.min"></span>
+                                / Required: <span ng-bind="vm.scaling.required"></span>
+                                / Max: <span ng-bind="vm.scaling.max"></span>
 
-                                <div class="form-group"
-                                     ng-class="{'has-error': scalingForm.scalingRequired.$invalid}">
-                                    <label for="scalingRequired">Required:</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           id="scalingRequired"
-                                           name="scalingRequired"
-                                           ng-model="vm.scaling.required"
-                                           ng-model-options="{debounce: { 'default': 500, 'blur': 0 } }"
-                                           ng-change="vm.updateScaling()"
-                                           required>
-                                </div>
-
-                                <div class="form-group"
-                                     ng-class="{'has-error': scalingForm.scalingMax.$invalid}">
-                                    <label for="scalingMax">Max:</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           id="scalingMax"
-                                           name="scalingMax"
-                                           ng-model="vm.scaling.max"
-                                           ng-model-options="{debounce: { 'default': 500, 'blur': 0 } }"
-                                           ng-change="vm.updateScaling()"
-                                           required>
-                                </div>
-                            </form>
+                                <button class="btn btn-default btn-xs"
+                                        type="button"
+                                        ng-click="vm.openScalingModal()">Scaling</button>
+                            </div>
                         </div>
                     </div>
 

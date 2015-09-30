@@ -10,14 +10,14 @@
         .module('myApp')
         .controller('InstancesController', InstancesController);
 
-    function InstancesController($log, InstancesCacheService, ScalingCacheService, ToastService) {
+    function InstancesController($log, $modal, InstancesCacheService, ScalingCacheService, ToastService) {
         var vm = this;
 
         // Instances
         vm.instances = [];
 
         // Scaling
-        vm.updateScaling = updateScaling;
+        vm.openScalingModal = openScalingModal;
 
         vm.scaling = {
             min: 0,
@@ -37,7 +37,7 @@
                 .then(function (instances) {
                     vm.instances = instances;
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                     $log.error(err);
                     ToastService.error('Cannot load instances');
                 });
@@ -47,30 +47,34 @@
                 .then(function (scaling) {
                     vm.scaling = scaling;
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                     $log.error(err);
                     ToastService.error('Cannot load scaling');
                 });
         }
 
-        function updateScaling() {
-            vm.scaling.min = Math.max(0, vm.scaling.min || 0);
-            vm.scaling.required = Math.max(0, vm.scaling.required || 0);
-            vm.scaling.max = Math.max(0, vm.scaling.max || 0);
+        function openScalingModal() {
+            var modalInstance = $modal.open({
+                templateUrl: 'app/home/instances/scaling/scaling.html',
+                controller: 'InstancesScalingController',
+                controllerAs: 'vm',
+                animation: false,
+                resolve: {
+                    scaling: function () {
+                        return _.cloneDeep(vm.scaling);
+                    },
+                },
+            });
 
-            if (vm.scaling.min > vm.scaling.required) {
-                vm.scaling.required = vm.scaling.min;
-            }
-
-            if (vm.scaling.max < vm.scaling.required) {
-                vm.scaling.max = vm.scaling.required;
-            }
-
-            ScalingCacheService
-                .updateScaling(vm.scaling)
-                .catch(function (err) {
-                    $log.error(err);
-                    ToastService.error('Cannot update scaling: ' + err);
+            modalInstance
+                .result
+                .then(function (scaling) {
+                    ScalingCacheService
+                        .updateScaling(scaling)
+                        .catch(function (err) {
+                            $log.error(err);
+                            ToastService.error('Cannot update scaling: ' + err);
+                        });
                 });
         }
     }

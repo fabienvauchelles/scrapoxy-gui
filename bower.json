@@ -2,9 +2,9 @@
     "name": "scrapoxy-gui",
     "version": "1.0.0",
     "dependencies": {
-        "angular": "~1.4.5",
+        "angular": "~1.4.7",
         "angular-bootstrap": "~0.13.4",
-        "angular-messages": "~1.4.5",
+        "angular-messages": "~1.4.7",
         "angular-ui-router": "~0.2.15",
         "bootstrap-sass-official": "~3.3.5",
         "c3": "~0.4.10",
