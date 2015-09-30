@@ -12,6 +12,7 @@
 
     function config(RestangularProvider) {
         RestangularProvider.setBaseUrl('/api');
+        //RestangularProvider.setBaseUrl('/api/api');
     }
 
 })();
