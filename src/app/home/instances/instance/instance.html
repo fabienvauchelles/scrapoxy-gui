@@ -2,6 +2,8 @@
     <div class="instance-info">
         <div class="instance-name" ng-bind="vm.container.content.name"></div>
 
+        <div class="instance-address" ng-bind="vm.container.content.address | address"></div>
+
         <div class="instance-icons">
             <div class="instance-type">
                 <i class="icon" ng-class="vm.getCloudType(vm.container.content.type)"></i>

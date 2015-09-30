@@ -2,7 +2,7 @@
     position: relative;
 
     width: 120px;
-    height: 80px;
+    height: 94px;
 
     margin-top: 10px;
     margin-bottom: 10px;
@@ -45,6 +45,12 @@
         &:hover {
             opacity: 0.8;
         }
+    }
+
+    .instance-address {
+        margin-top: 4px;
+
+        font-size: 11px;
     }
 
     .instance-icons {
