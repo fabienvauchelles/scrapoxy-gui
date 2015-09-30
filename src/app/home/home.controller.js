@@ -10,9 +10,8 @@
         .module('myApp')
         .controller('HomeController', HomeController);
 
-    function HomeController($log, $scope, EventsService, InstancesCacheService, LoginService, ScalingCacheService, StatsCacheService, ToastService) {
+    function HomeController($log, $scope, EventsService, InstancesCacheService, LoginService, ScalingCacheService, ToastService) {
         $scope.$on('$destroy', function () {
-            StatsCacheService.stop();
             InstancesCacheService.stop();
             ScalingCacheService.stop();
 
@@ -33,7 +32,6 @@
         // Cache data
         ScalingCacheService.getScaling();
         InstancesCacheService.getAllInstances();
-        StatsCacheService.getStats();
     }
 
 })();

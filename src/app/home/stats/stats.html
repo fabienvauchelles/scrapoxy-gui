@@ -2,13 +2,45 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default stats-global">
                     <div class="panel-heading">
-                        <div class="panel-title">Requests (for 1 minute)</div>
+                        <div class="panel-title">
+                            Global stats
+
+                            <div class="btn-group pull-right" role="group">
+                                <button type="button"
+                                        class="btn btn-default btn-xs"
+                                        ng-class="{'active': vm.scale === 60000}"
+                                        ng-click="vm.scale = 60000">1m
+                                </button>
+                                <button type="button"
+                                        class="btn btn-default btn-xs"
+                                        ng-class="{'active': vm.scale === 3600000}"
+                                        ng-click="vm.scale = 3600000">1h
+                                </button>
+                                <button type="button"
+                                        class="btn btn-default btn-xs"
+                                        ng-class="{'active': vm.scale === 86400000}"
+                                        ng-click="vm.scale = 86400000">1d
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="panel-body">
-                        <div id="req_chart60"></div>
+                        <ul>
+                            <li>
+                                Requests before stop (min/avg/max):
+
+                                <span ng-if="vm.global.rq_before_stop">
+                                    <span ng-bind="vm.global.rq_before_stop.min"></span>
+                                    / <span ng-bind="vm.global.rq_before_stop.avg"></span>
+                                    / <span ng-bind="vm.global.rq_before_stop.max"></span>
+                                </span>
+
+                                <span ng-if="!vm.global.rq_before_stop">none</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -16,11 +48,11 @@
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="panel-title">Requests (for 1 hour)</div>
+                        <div class="panel-title">Requests</div>
                     </div>
 
                     <div class="panel-body">
-                        <div id="req_chart3600"></div>
+                        <timechart columns="vm.requests.columns" data="vm.requests.data"></timechart>
                     </div>
                 </div>
             </div>
@@ -28,15 +60,14 @@
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="panel-title">Flow (for 1 hour)</div>
+                        <div class="panel-title">Flow</div>
                     </div>
 
                     <div class="panel-body">
-                        <div id="flow_chart60"></div>
+                        <timechart columns="vm.flow.columns" data="vm.flow.data"></timechart>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
