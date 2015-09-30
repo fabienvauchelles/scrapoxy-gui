@@ -33,7 +33,8 @@
 
                 try {
                     socket = io.connect('', {
-                        path: '/api/socket.io',
+                        //path: '/api/socket.io', // DEV mode
+                        path: '/socket.io', // PROD mode
                         query: 'token=' + token,
                         'force new connection': true,
                     });

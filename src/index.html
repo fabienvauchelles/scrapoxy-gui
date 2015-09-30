@@ -33,11 +33,13 @@
 
     <div ui-view></div>
 
+    <!--<script src="/api/socket.io/socket.io.js"></script>--> <!-- DEV mode -->
+    <script src="/socket.io/socket.io.js"></script> <!-- PROD mode -->
+
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
     <!-- endbower -->
-    <script src="/api/socket.io/socket.io.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->

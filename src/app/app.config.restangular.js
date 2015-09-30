@@ -11,8 +11,8 @@
         .config(config);
 
     function config(RestangularProvider) {
-        RestangularProvider.setBaseUrl('/api');
-        //RestangularProvider.setBaseUrl('/api/api');
+        //RestangularProvider.setBaseUrl('/api/api'); // DEV mode
+        RestangularProvider.setBaseUrl('/api'); // PROD mode
     }
 
 })();
