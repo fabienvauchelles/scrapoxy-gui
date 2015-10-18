@@ -1,6 +1,6 @@
 <div class="instance">
     <div class="instance-info">
-        <div class="instance-name" ng-bind="vm.container.content.name"></div>
+        <div class="instance-name" ng-bind="vm.container.content.name | limitTo:13"></div>
 
         <div class="instance-address" ng-bind="vm.container.content.address | address"></div>
 

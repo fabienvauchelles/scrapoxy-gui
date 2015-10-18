@@ -28,6 +28,10 @@ i.icon {
     color: #f68536;
 }
 
+.icon-ovh-cloud {
+    color: #264670;
+}
+
 .icon-started {
     color: green;
 }
@@ -49,8 +53,11 @@ i.icon {
     color: red;
 }
 
-
 // Icons definition
+.icon-ovh-cloud:before {
+    content: "\e800";
+}
+
 .icon-alive:before {
     content: "\e0f8";
 }

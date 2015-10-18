@@ -49,6 +49,10 @@
                 return 'icon-aws-ec2';
             }
 
+            case 'ovhcloud': {
+                return 'icon-ovh-cloud';
+            }
+
             default: {
                 return 'icon-unknown';
             }
