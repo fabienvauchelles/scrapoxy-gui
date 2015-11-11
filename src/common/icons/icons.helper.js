@@ -46,11 +46,11 @@
     function getProviderType(type) {
         switch (type) {
             case 'awsec2': {
-                return 'icon-aws-ec2';
+                return 'icon-awsec2';
             }
 
             case 'ovhcloud': {
-                return 'icon-ovh-cloud';
+                return 'icon-ovhcloud';
             }
 
             default: {

@@ -24,11 +24,11 @@ i.icon {
 }
 
 // Icons colors
-.icon-aws-ec2 {
+.icon-awsec2 {
     color: #f68536;
 }
 
-.icon-ovh-cloud {
+.icon-ovhcloud {
     color: #264670;
 }
 
@@ -54,7 +54,7 @@ i.icon {
 }
 
 // Icons definition
-.icon-ovh-cloud:before {
+.icon-ovhcloud:before {
     content: "\e800";
 }
 
@@ -94,6 +94,6 @@ i.icon {
     content: "\f08b";
 }
 
-.icon-aws-ec2:before {
+.icon-awsec2:before {
     content: "\f1b3";
 }
