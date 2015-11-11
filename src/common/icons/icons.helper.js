@@ -4,7 +4,7 @@
     global.iconsHelper = (global.module || {}).exports = {
         getStatus: getStatus,
         isAlive: isAlive,
-        getCloudType: getCloudType,
+        getProviderType: getProviderType,
     };
 
 
@@ -43,7 +43,7 @@
         }
     }
 
-    function getCloudType(type) {
+    function getProviderType(type) {
         switch (type) {
             case 'awsec2': {
                 return 'icon-aws-ec2';
