@@ -35,7 +35,7 @@
                     socket = io.connect('', {
                         //path: '/api/socket.io', // DEV mode
                         path: '/socket.io', // PROD mode
-                        query: 'token=' + token,
+                        query: 'token=' + encodeURIComponent(token),
                         'force new connection': true,
                     });
 
