@@ -1,34 +1,24 @@
-/**
- * ROUTE: Token
- */
+export default function config($state, $rootScope, AuthService) {
+    'ngInject';
 
-(function () {
-    'use strict';
+    /*eslint angular/on-watch: 0*/
+    $rootScope.$on('$stateChangeStart', (event, toState) => {
+        if (toState.name === 'login') {
+            return;
+        }
 
+        const requireAuth = toState.data.requireAuth;
+        if (!requireAuth) {
+            return;
+        }
 
-    angular
-        .module('myApp')
-        .run(TokenRouting);
+        const token = AuthService.getToken();
+        if (token) {
+            return;
+        }
 
-    function TokenRouting($state, $rootScope, LoginService) {
-        $rootScope.$on('$stateChangeStart', function (event, toState) {
-            if (toState.name ==='login') {
-                return;
-            }
+        event.preventDefault();
 
-            var requireAuth = toState.data.requireAuth;
-            if (!requireAuth) {
-                return;
-            }
-
-            var token = LoginService.getToken();
-            if (token) {
-                return;
-            }
-
-            event.preventDefault();
-
-            $state.go('login');
-        });
-    }
-})();
+        $state.go('login');
+    });
+}

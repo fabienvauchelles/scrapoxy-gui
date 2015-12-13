@@ -1,0 +1,18 @@
+$fonts: (
+        ('Open Sans', 300, normal, 'OpenSans-Light'),
+        ('Open Sans', 400, normal, 'OpenSans-Regular'),
+        ('Open Sans', 700, normal, 'OpenSans-Bold'),
+);
+
+@each $font-family, $font-weight, $font-style, $filename in $fonts {
+    @font-face {
+        font-family: $font-family;
+        src: url('../assets/fonts/#{$filename}.eot');
+        src: url('../assets/fonts/#{$filename}.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/#{$filename}.woff') format('woff'),
+        url('../assets/fonts/#{$filename}.ttf') format('truetype'),
+        url('../assets/fonts/#{$filename}.svg#robotobold') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+    }
+}

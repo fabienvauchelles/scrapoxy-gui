@@ -1,35 +1,23 @@
-/**
- * CONTROLLER: LoginController
- */
+export default class Controller {
+    constructor($state, AuthService, ToastService) {
+        'ngInject';
 
-(function () {
-    'use strict';
-
-
-    angular
-        .module('myApp')
-        .controller('LoginController', LoginController);
-
-    function LoginController($state, LoginService, ToastService) {
-        var vm = this;
-
-        vm.login = login;
+        this.$state = $state;
+        this.AuthService = AuthService;
+        this.ToastService = ToastService;
 
         // Credentials
-        vm.password = '';
-
-
-        ////////////
-
-        function login() {
-            LoginService.login(vm.password)
-                .then(function () {
-                    $state.go('home.instances');
-                })
-                .catch(function () {
-                    ToastService.error('Invalid password');
-                });
-        }
+        this.password = '';
     }
 
-})();
+
+    login() {
+        this.AuthService.login(this.password)
+            .then(
+            () => this.$state.go('home.instances')
+        )
+            .catch(
+            () => this.ToastService.error('Invalid password')
+        );
+    }
+}

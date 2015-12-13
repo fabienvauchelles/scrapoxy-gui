@@ -1,54 +1,27 @@
-/**
- * DIRECTIVE: scaling validator
- */
+export default function Directive() {
+    'ngInject';
 
-(function () {
-    'use strict';
+    const directive = {
+        restrict: 'A',
+        require: 'ngModel',
+        scope: {
+            scmin: '=',
+            scmax: '=',
+        },
+        link: linkFunc,
+    };
 
-
-    angular
-        .module('myApp')
-        .directive('scalingValidator', scalingValidator);
-
-    function scalingValidator() {
-        var directive = {
-            restrict: 'A',
-            require: 'ngModel',
-            scope: {
-                scmin: '=',
-                scmax: '=',
-            },
-            link: linkFunc,
-        };
-
-        return directive;
+    return directive;
 
 
-        ////////////
+    ////////////
 
-        function linkFunc($scope, element, attrs, ngModel) {
-            ngModel.$validators.scmin = scmin;
-            ngModel.$validators.scmax = scmax;
+    function linkFunc($scope, element, attrs, ngModel) {
+        ngModel.$validators.scmin = (modelValue) => modelValue >= $scope.scmin;
+        ngModel.$validators.scmax = (modelValue) => modelValue <= $scope.scmax;
 
-            $scope.$watch('scmin', function () {
-                ngModel.$validate();
-            });
+        $scope.$watch('scmin', () => ngModel.$validate());
 
-            $scope.$watch('scmax', function () {
-                ngModel.$validate();
-            });
-
-
-            ////////////
-
-            function scmin(modelValue) {
-                return modelValue >= $scope.scmin;
-            }
-
-            function scmax(modelValue) {
-                return modelValue <= $scope.scmax;
-            }
-        }
+        $scope.$watch('scmax', () => ngModel.$validate());
     }
-
-})();
+}

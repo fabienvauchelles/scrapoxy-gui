@@ -1,59 +1,47 @@
-/**
- * INTERCEPTOR: Token
- */
+export default function config($httpProvider) {
+    'ngInject';
+
+    $httpProvider.interceptors.push(interceptor);
 
 
-(function () {
-    'use strict';
+    ////////////
 
+    function interceptor($injector, $q) {
+        'ngInject';
 
-    angular
-        .module('myApp')
-        .config(Interceptor);
+        const intcp = {
+            request,
+            responseError,
+        };
 
-    function Interceptor($httpProvider) {
-        $httpProvider.interceptors.push(interceptor);
+        return intcp;
 
 
         ////////////
 
-        function interceptor($injector, $q) {
-            var intcp = {
-                'request': request,
-                'responseError': responseError
-            };
+        function request(cfg) {
+            const AuthService = $injector.get('AuthService'),
+                token = AuthService.getToken();
 
-            return intcp;
-
-
-            ////////////
-
-            function request(config) {
-                var LoginService = $injector.get('LoginService'),
-                    token = LoginService.getToken();
-
-                if (token) {
-                    config.headers.Authorization = token;
-                }
-
-                return config;
+            if (token) {
+                cfg.headers.Authorization = token;
             }
 
-            function responseError(rejection) {
-                if (rejection.status === 401 || rejection.status === 403) {
-                    var LoginService = $injector.get('LoginService'),
-                        $state = $injector.get('$state');
+            return cfg;
+        }
 
-                    // Force logout and redirect to login page
-                    LoginService.logout()
-                        .finally(function () {
-                            $state.go('login');
-                        });
-                }
+        function responseError(rejection) {
+            if (rejection.status === 401 || rejection.status === 403) {
+                const AuthService = $injector.get('AuthService'),
+                    $state = $injector.get('$state');
 
-                return $q.reject(rejection);
+                // Force logout and redirect to login page
+                AuthService
+                    .logout()
+                    .finally(() => $state.go('login'));
             }
+
+            return $q.reject(rejection);
         }
     }
-
-})();
+}

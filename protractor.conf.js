@@ -1,6 +1,8 @@
 'use strict';
 
-var paths = require('./.yo-rc.json')['generator-gulp-angular'].props.paths;
+const path = require('path');
+
+const paths = require('./.yo-rc.json')['generator-gulp-angular'].props.paths;
 
 // An example configuration file.
 exports.config = {
@@ -10,18 +12,18 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
     },
 
     baseUrl: 'http://localhost:3000',
 
     // Spec patterns are relative to the current working directly when
     // protractor is called.
-    specs: [paths.e2e + '/**/*.js'],
+    specs: [path.join(paths.e2e, '/**/*.js')],
 
     // Options to be passed to Jasmine-node.
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 30000
-    }
+        defaultTimeoutInterval: 30000,
+    },
 };

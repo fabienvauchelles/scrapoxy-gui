@@ -8,6 +8,13 @@
 
 
 // Bootstrap
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
 
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+// C3
+@import "../node_modules/c3/src/scss/main";
+
+
+// Toastr
+@import "../node_modules/toastr/toastr";

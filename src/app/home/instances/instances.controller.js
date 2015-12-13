@@ -1,82 +1,62 @@
-/**
- * CONTROLLER: InstancesController
- */
-
-(function () {
-    'use strict';
+import InstancesScalingController from './scaling/scaling.controller';
 
 
-    angular
-        .module('myApp')
-        .controller('InstancesController', InstancesController);
+export default class Controller {
+    constructor($log, $uibModal, InstancesCacheService, ScalingCacheService, ToastService) {
+        'ngInject';
 
-    function InstancesController($log, $modal, InstancesCacheService, ScalingCacheService, ToastService) {
-        var vm = this;
+        this.$log = $log;
+        this.$uibModal = $uibModal;
+        this.InstancesCacheService = InstancesCacheService;
+        this.ScalingCacheService = ScalingCacheService;
+        this.ToastService = ToastService;
 
-        // Instances
-        vm.instances = [];
+        this.instances = [];
 
-        // Scaling
-        vm.openScalingModal = openScalingModal;
-
-        vm.scaling = {
+        this.scaling = {
             min: 0,
             required: 0,
             max: 0,
         };
 
-        // Load datas
-        load();
-
-
-        ////////////
-
-        function load() {
-            InstancesCacheService
-                .getAllInstances()
-                .then(function (instances) {
-                    vm.instances = instances;
-                })
-                .catch(function (err) {
-                    $log.error(err);
-                    ToastService.error('Cannot load instances');
-                });
-
-            ScalingCacheService
-                .getScaling()
-                .then(function (scaling) {
-                    vm.scaling = scaling;
-                })
-                .catch(function (err) {
-                    $log.error(err);
-                    ToastService.error('Cannot load scaling');
-                });
-        }
-
-        function openScalingModal() {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/home/instances/scaling/scaling.html',
-                controller: 'InstancesScalingController',
-                controllerAs: 'vm',
-                animation: false,
-                resolve: {
-                    scaling: function () {
-                        return _.cloneDeep(vm.scaling);
-                    },
-                },
+        this.InstancesCacheService
+            .getAllInstances()
+            .then((instances) => this.instances = instances)
+            .catch((err) => {
+                this.$log.error(err);
+                this.ToastService.error('Cannot load instances');
             });
 
-            modalInstance
-                .result
-                .then(function (scaling) {
-                    ScalingCacheService
-                        .updateScaling(scaling)
-                        .catch(function (err) {
-                            $log.error(err);
-                            ToastService.error('Cannot update scaling: ' + err);
-                        });
-                });
-        }
+        this.ScalingCacheService
+            .getScaling()
+            .then((scaling) => this.scaling = scaling)
+            .catch((err) => {
+                this.$log.error(err);
+                this.ToastService.error('Cannot load scaling');
+            });
     }
 
-})();
+
+    openScalingModal() {
+        const modalInstance = this.$uibModal.open({
+            templateUrl: 'app/home/instances/scaling/scaling.html',
+            controller: InstancesScalingController,
+            controllerAs: 'vm',
+            animation: false,
+            resolve: {
+                scaling: () => _.cloneDeep(this.scaling),
+            },
+        });
+
+        modalInstance
+            .result
+            .then(
+                (scaling) => this.ScalingCacheService
+                    .updateScaling(scaling)
+                    .catch((err) => {
+                        this.$log.error(err);
+                        this.ToastService.error(`Cannot update scaling: ${err}`);
+                    })
+            );
+    }
+}

@@ -1,31 +1,41 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+const browserSync = require('browser-sync'),
+    browserSyncSpa = require('browser-sync-spa'),
+    connect = require('gulp-connect'),
+    gulp = require('gulp'),
+    path = require('path'),
+    proxyMiddleware = require('http-proxy-middleware'),
+    util = require('util');
 
-var browserSync = require('browser-sync');
-var browserSyncSpa = require('browser-sync-spa');
+const conf = require('./conf');
 
-var util = require('util');
 
-var proxyMiddleware = require('http-proxy-middleware');
+function proxyMiddlewares() {
+    return [
+        proxyMiddleware('/api', {
+            target: 'http://localhost:8889',
+            changeOrigin: true,
+        }),
+        proxyMiddleware('/socket.io', {
+            target: 'http://localhost:8889',
+            changeOrigin: true,
+            ws: true,
+        }),
+    ];
+}
 
 function browserSyncInit(baseDir, browser) {
-    browser = browser === undefined ? 'default' : browser;
-
-    var routes = null;
-    if (baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
-        routes = {
-            '/bower_components': 'bower_components',
-            '/assets': 'src/assets',
-        };
+    if (!browser) {
+        browser = 'defaut';
     }
 
-    var server = {
-        baseDir: baseDir,
-        routes: routes
-    };
+    let routes = null;
+    if (baseDir === conf.paths.src || util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1) {
+        routes = {'/node_modules': 'node_modules'};
+    }
+
+    const server = {baseDir, routes};
 
     /*
      * You can add a proxy to your backend by uncommenting the line bellow.
@@ -34,40 +44,41 @@ function browserSyncInit(baseDir, browser) {
      *
      * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
      */
-    server.middleware = [
-        proxyMiddleware('/api', {
-            target: 'http://localhost:8889',
-            changeOrigin: true,
-            ws: true,
-            pathRewrite: {
-                '^/api/': '/',
-            },
-        }),
-    ];
+    server.middleware = proxyMiddlewares();
 
     browserSync.instance = browserSync.init({
         startPath: '/',
-        server: server,
-        browser: browser
+        server,
+        port: 3000,
+        browser,
     });
 }
 
 browserSync.use(browserSyncSpa({
-    selector: '[ng-app]'// Only needed for angular apps
+    selector: '[ng-app]', // Only needed for angular apps
 }));
 
-gulp.task('serve', ['watch'], function () {
+
+gulp.task('serve', ['watch'], () => {
     browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
-gulp.task('serve:dist', ['build'], function () {
-    browserSyncInit(conf.paths.dist);
+
+gulp.task('serve:dist', ['build'], () => {
+    connect.server({
+        root: [conf.paths.dist],
+        host: '0.0.0.0',
+        port: 3000,
+        middleware: () => proxyMiddlewares(),
+    });
 });
 
-gulp.task('serve:e2e', ['inject'], function () {
-    browserSyncInit([conf.paths.tmp + '/serve', conf.paths.src], []);
+
+gulp.task('serve:e2e', ['inject'], () => {
+    browserSyncInit([`${conf.paths.tmp}/serve`, conf.paths.src], []);
 });
 
-gulp.task('serve:e2e-dist', ['build'], function () {
+
+gulp.task('serve:e2e-dist', ['build'], () => {
     browserSyncInit(conf.paths.dist, []);
 });

@@ -1,25 +1,16 @@
-/**
- * ROUTE: login
- */
+import Controller from './login.controller.js';
 
-(function () {
-    'use strict';
+export default function route($stateProvider) {
+    'ngInject';
 
-
-    angular
-        .module('myApp')
-        .config(Routing);
-
-    function Routing($stateProvider) {
-        $stateProvider
-            .state('login', {
-                url: '/login',
-                data: {
-                    requireAuth: false,
-                },
-                templateUrl: 'app/login/login.html',
-                controller: 'LoginController as vm'
-            });
-    }
-
-})();
+    $stateProvider
+        .state('login', {
+            data: {
+                requiredAuth: false,
+            },
+            url: '/login',
+            templateUrl: 'app/login/login.html',
+            controller: Controller,
+            controllerAs: 'vm',
+        });
+}

@@ -6,15 +6,15 @@
 
         <div class="instance-icons">
             <div class="instance-type">
-                <i class="icon" ng-class="vm.getProviderType(vm.container.content.type)"></i>
+                <i class="icon" ng-class="vm.IconsService.getProviderType(vm.container.content.type)"></i>
             </div>
 
             <div class="instance-status">
-                <i class="icon" ng-class="vm.getStatus(vm.container.content.status)"></i>
+                <i class="icon" ng-class="vm.IconsService.getStatus(vm.container.content.status)"></i>
             </div>
 
             <div class="instance-alive">
-                <i class="icon" ng-class="vm.isAlive(vm.container.content.alive)"></i>
+                <i class="icon" ng-class="vm.IconsService.isAlive(vm.container.content.alive)"></i>
             </div>
         </div>
     </div>

@@ -1,35 +1,26 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+const gulp = require('gulp'),
+    path = require('path');
 
-var $ = require('gulp-load-plugins')();
+const $ = require('gulp-load-plugins')();
 
-var wiredep = require('wiredep').stream;
-var _ = require('lodash');
+const conf = require('./conf');
 
-gulp.task('inject', ['scripts', 'styles'], function () {
-    var injectStyles = gulp.src([
-        path.join(conf.paths.tmp, '/serve/{app,components}/**/*.css'),
-        path.join('!' + conf.paths.tmp, '/serve/app/vendor.css')
+
+gulp.task('inject', ['scripts', 'styles'], () => {
+    const injectScripts = gulp.src([
+        path.join(conf.paths.tmp, '/serve/index.js'),
+        path.join(`!${conf.paths.src}`, '/app/**/*.spec.js'),
+        path.join(`!${conf.paths.src}`, '/app/**/*.mock.js'),
     ], {read: false});
 
-    var injectScripts = gulp.src([
-        path.join(conf.paths.src, '/index.js'),
-        path.join(conf.paths.src, '/{app,common,components}/**/*.js'),
-        path.join('!' + conf.paths.src, '/app/**/*.spec.js'),
-        path.join('!' + conf.paths.src, '/app/**/*.mock.js')
-    ]);
-
-    var injectOptions = {
+    const injectOptions = {
         ignorePath: [conf.paths.src, path.join(conf.paths.tmp, '/serve')],
-        addRootSlash: false
+        addRootSlash: false,
     };
 
     return gulp.src(path.join(conf.paths.src, '/*.html'))
-        .pipe($.inject(injectStyles, injectOptions))
         .pipe($.inject(injectScripts, injectOptions))
-        .pipe(wiredep(_.extend({}, conf.wiredep)))
         .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
 });

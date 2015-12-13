@@ -1,26 +1,17 @@
-/**
- * ROUTE: home
- */
+import Controller from './home.controller.js';
 
-(function () {
-    'use strict';
+export default function route($stateProvider) {
+    'ngInject';
 
-
-    angular
-        .module('myApp')
-        .config(Routing);
-
-    function Routing($stateProvider) {
-        $stateProvider
-            .state('home', {
-                abstract: true,
-                url: '',
-                data: {
-                    requireAuth: true,
-                },
-                templateUrl: 'app/home/home.html',
-                controller: 'HomeController as vm'
-            });
-    }
-
-})();
+    $stateProvider
+        .state('home', {
+            abstract: true,
+            data: {
+                requiredAuth: true,
+            },
+            url: '/home',
+            templateUrl: 'app/home/home.html',
+            controller: Controller,
+            controllerAs: 'vm',
+        });
+}

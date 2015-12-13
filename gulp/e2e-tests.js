@@ -1,37 +1,40 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+const browserSync = require('browser-sync'),
+    gulp = require('gulp'),
+    path = require('path');
 
-var browserSync = require('browser-sync');
+const $ = require('gulp-load-plugins')();
 
-var $ = require('gulp-load-plugins')();
+const conf = require('./conf');
 
-// Downloads the selenium webdriver
+
 gulp.task('webdriver-update', $.protractor.webdriver_update);
+
 
 gulp.task('webdriver-standalone', $.protractor.webdriver_standalone);
 
+
 function runProtractor(done) {
-    var params = process.argv;
-    var args = params.length > 3 ? [params[3], params[4]] : [];
+    const params = process.argv,
+        args = params.length > 3 ? [params[3], params[4]] : [];
 
     gulp.src(path.join(conf.paths.e2e, '/**/*.js'))
         .pipe($.protractor.protractor({
             configFile: 'protractor.conf.js',
-            args: args
+            args,
         }))
-        .on('error', function (err) {
+        .on('error', (err) => {
             // Make sure failed tests cause gulp to exit non-zero
             throw err;
         })
-        .on('end', function () {
+        .on('end', () => {
             // Close browser sync server
             browserSync.exit();
             done();
         });
 }
+
 
 gulp.task('protractor', ['protractor:src']);
 gulp.task('protractor:src', ['serve:e2e', 'webdriver-update'], runProtractor);
