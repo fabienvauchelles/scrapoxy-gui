@@ -1,33 +1,18 @@
-/**
- * CONTROLLER: InstancesScalingController
- */
+export default class Controller {
+    constructor($uibModalInstance, scaling) {
+        'ngInject';
 
-(function () {
-    'use strict';
-
-
-    angular
-        .module('myApp')
-        .controller('InstancesScalingController', InstancesScalingController);
-
-    function InstancesScalingController($modalInstance, scaling) {
-        var vm = this;
-
-        vm.scaling = scaling;
-
-        vm.ok = ok;
-        vm.cancel = cancel;
-
-
-        ////////////
-
-        function ok() {
-            $modalInstance.close(vm.scaling);
-        }
-
-        function cancel() {
-            $modalInstance.dismiss('cancel');
-        }
+        this.$uibModalInstance = $uibModalInstance;
+        this.scaling = scaling;
     }
 
-})();
+
+    ok() {
+        this.$uibModalInstance.close(this.scaling);
+    }
+
+
+    cancel() {
+        this.$uibModalInstance.dismiss('cancel');
+    }
+}

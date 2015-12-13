@@ -1,22 +1,13 @@
-/**
- * ROUTE: home.instances
- */
+import Controller from './instances.controller.js';
 
-(function () {
-    'use strict';
+export default function route($stateProvider) {
+    'ngInject';
 
-
-    angular
-        .module('myApp')
-        .config(Routing);
-
-    function Routing($stateProvider) {
-        $stateProvider
-            .state('home.instances', {
-                url: '/instances',
-                templateUrl: 'app/home/instances/instances.html',
-                controller: 'InstancesController as vm'
-            });
-    }
-
-})();
+    $stateProvider
+        .state('home.instances', {
+            url: '/instances',
+            templateUrl: 'app/home/instances/instances.html',
+            controller: Controller,
+            controllerAs: 'vm',
+        });
+}

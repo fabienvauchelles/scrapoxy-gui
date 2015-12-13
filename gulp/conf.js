@@ -1,42 +1,20 @@
-/**
- *  This file contains the variables used in other gulp files
- *  which defines tasks
- *  By design, we only put there very generic config values
- *  which are used in several places to keep good readability
- *  of the tasks
- */
+'use strict';
 
-var gutil = require('gulp-util');
+const gutil = require('gulp-util');
 
-/**
- *  The main paths of your project handle these with care
- */
 exports.paths = {
-    src: 'src',
-    scss: 'scss',
     dist: 'dist',
+    e2e: 'e2e',
+    gulp: 'gulp',
+    scss: 'scss',
+    src: 'src',
     tmp: '.tmp',
-    e2e: 'e2e'
 };
 
-/**
- *  Wiredep is the lib which inject bower dependencies in your project
- *  Mainly used to inject script tags in the index.html but also used
- *  to inject css preprocessor deps and js files in karma
- */
-exports.wiredep = {
-    exclude: [/bootstrap.js$/, /bootstrap-sass-official\/.*\.js/, /bootstrap\.css/, /fontawesome/],
-    directory: 'bower_components'
-};
+exports.errorHandler = (title) =>
+    (err) => {
+        gutil.log(gutil.colors.red(`[${title}]`), err.toString());
 
-/**
- *  Common implementation for an error handler of a Gulp plugin
- */
-exports.errorHandler = function (title) {
-    'use strict';
-
-    return function (err) {
-        gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
+        /* eslint no-invalid-this: 0 */
         this.emit('end');
     };
-};

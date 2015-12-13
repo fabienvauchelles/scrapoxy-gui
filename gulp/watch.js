@@ -1,47 +1,38 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+const browserSync = require('browser-sync'),
+    gulp = require('gulp'),
+    path = require('path');
 
-var browserSync = require('browser-sync');
+const conf = require('./conf');
+
 
 function isOnlyChange(event) {
     return event.type === 'changed';
 }
 
-gulp.task('watch', ['inject'], function () {
 
-    gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], ['inject']);
+gulp.task('watch', ['scripts:watch', 'inject'], () => {
+    gulp.watch([path.join(conf.paths.src, '/*.html'), 'package.json'], ['inject']);
 
     gulp.watch([
+        //path.join(conf.paths.src, '/app/**/*.css'),
         path.join(conf.paths.scss, '/**/*.scss'),
         path.join(conf.paths.src, '/app/**/*.scss'),
-        path.join(conf.paths.src, '/components/**/*.scss')
-    ], function (event) {
+        path.join(conf.paths.src, '/components/**/*.scss'),
+    ], (event) => {
         if (isOnlyChange(event)) {
             gulp.start('styles');
-        } else {
-            gulp.start('inject');
         }
-    });
-
-    gulp.watch([
-        path.join(conf.paths.src, '/app/**/*.js'),
-        path.join(conf.paths.src, '/common/**/*.js'),
-        path.join(conf.paths.src, '/components/**/*.js'),
-    ], function (event) {
-        if (isOnlyChange(event)) {
-            gulp.start('scripts');
-        } else {
+        else {
             gulp.start('inject');
         }
     });
 
     gulp.watch([
         path.join(conf.paths.src, '/app/**/*.html'),
-        path.join(conf.paths.src, '/components/**/*.html')
-    ], function (event) {
+        path.join(conf.paths.src, '/components/**/*.html'),
+    ], (event) => {
         browserSync.reload(event.path);
     });
 });

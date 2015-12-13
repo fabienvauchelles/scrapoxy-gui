@@ -1,17 +1,8 @@
-/**
- * CONTROLLER: HomeController
- */
+export default class Controller {
+    constructor($log, $scope, EventsService, InstancesCacheService, AuthService, ScalingCacheService, ToastService) {
+        'ngInject';
 
-(function () {
-    'use strict';
-
-
-    angular
-        .module('myApp')
-        .controller('HomeController', HomeController);
-
-    function HomeController($log, $scope, EventsService, InstancesCacheService, LoginService, ScalingCacheService, ToastService) {
-        $scope.$on('$destroy', function () {
+        $scope.$on('$destroy', () => {
             InstancesCacheService.stop();
             ScalingCacheService.stop();
 
@@ -19,11 +10,9 @@
         });
 
         EventsService
-            .start(LoginService.getToken())
-            .then(function () {
-                ToastService.success('GUI is connected.');
-            })
-            .catch(function (err) {
+            .start(AuthService.getToken())
+            .then(() => ToastService.success('GUI is connected.'))
+            .catch((err) => {
                 $log.error(err);
 
                 ToastService.error('Cannot connect to daemon.<br/>Please reload GUI.');
@@ -33,5 +22,4 @@
         ScalingCacheService.getScaling();
         InstancesCacheService.getAllInstances();
     }
-
-})();
+}
