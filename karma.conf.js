@@ -2,8 +2,8 @@
 
 const path = require('path');
 
-const conf = require('./gulp/conf');
 
+const conf = require('./gulp/conf');
 
 const pathSrcHtml = [
     path.join(conf.paths.src, '/**/*.html'),
