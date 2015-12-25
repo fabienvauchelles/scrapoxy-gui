@@ -1,11 +1,10 @@
-![Scrapoxy](https://raw.githubusercontent.com/fabienvauchelles/scrapoxy/master/docs/logo.png)
-
-
 # GUI for Scrapoxy
 
-[https://github.com/fabienvauchelles/scrapoxy](https://github.com/fabienvauchelles/scrapoxy)
+## Website
+
+Latest news are on [Scrapoxy.io](http://scrapoxy.io)!
 
 
-# Licence
+## Documentation
 
-See the [Licence](LICENCE.txt).
+Documentation is on [ReadTheDocs](http://scrapoxy.readthedocs.org).
