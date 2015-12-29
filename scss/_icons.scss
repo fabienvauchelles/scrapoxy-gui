@@ -28,6 +28,10 @@ i.icon {
     color: #f68536;
 }
 
+.icon-digitalocean {
+    color: #6eb5e6;
+}
+
 .icon-ovhcloud {
     color: #264670;
 }
@@ -54,8 +58,8 @@ i.icon {
 }
 
 // Icons definition
-.icon-ovhcloud:before {
-    content: "\e800";
+.icon-digitalocean:before {
+    content: "\e900";
 }
 
 .icon-alive:before {
@@ -68,6 +72,10 @@ i.icon {
 
 .icon-unknown:before {
     content: "\e29b";
+}
+
+.icon-ovhcloud:before {
+    content: "\e800";
 }
 
 .icon-started:before {

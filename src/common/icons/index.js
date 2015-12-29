@@ -45,6 +45,10 @@ export default class Service {
                 return 'icon-awsec2';
             }
 
+            case 'digitalocean': {
+                return 'icon-digitalocean';
+            }
+
             case 'ovhcloud': {
                 return 'icon-ovhcloud';
             }
