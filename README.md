@@ -2,9 +2,9 @@
 
 ## Website
 
-Latest news are on [Scrapoxy.io](http://scrapoxy.io)!
+Latest news are on [scrapoxy.io](http://scrapoxy.io)!
 
 
 ## Documentation
 
-Documentation is on [ReadTheDocs](http://scrapoxy.readthedocs.org).
+Documentation is on [docs.scrapoxy.io](http://docs.scrapoxy.io).
