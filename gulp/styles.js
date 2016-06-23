@@ -21,7 +21,7 @@ gulp.task('styles', () => {
 
     const injectOptions = {
         transform: (filePath) => {
-            filePath = filePath.replace(`{conf.paths.src}/`, `../${conf.paths.src}/`);
+            filePath = filePath.replace('{conf.paths.src}/', `../${conf.paths.src}/`);
 
             return `@import "${filePath}";`;
         },

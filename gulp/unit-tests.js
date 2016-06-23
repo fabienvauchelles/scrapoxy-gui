@@ -20,10 +20,14 @@ function runTests(singleRun, done) {
     const reporters = ['progress'];
     const preprocessors = {};
 
-    pathSrcHtml.forEach((p) => preprocessors[p] = ['ng-html2js']);
+    pathSrcHtml.forEach((p) => {
+        preprocessors[p] = ['ng-html2js'];
+    });
 
     if (singleRun) {
-        pathSrcJs.forEach((p) => preprocessors[p] = ['coverage']);
+        pathSrcJs.forEach((p) => {
+            preprocessors[p] = ['coverage'];
+        });
 
         reporters.push('coverage');
     }

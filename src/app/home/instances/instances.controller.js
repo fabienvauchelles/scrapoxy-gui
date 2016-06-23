@@ -21,7 +21,9 @@ export default class Controller {
 
         this.InstancesCacheService
             .getAllInstances()
-            .then((instances) => this.instances = instances)
+            .then((instances) => {
+                this.instances = instances;
+            })
             .catch((err) => {
                 this.$log.error(err);
                 this.ToastService.error('Cannot load instances');
@@ -29,7 +31,9 @@ export default class Controller {
 
         this.ScalingCacheService
             .getScaling()
-            .then((scaling) => this.scaling = scaling)
+            .then((scaling) => {
+                this.scaling = scaling;
+            })
             .catch((err) => {
                 this.$log.error(err);
                 this.ToastService.error('Cannot load scaling');
