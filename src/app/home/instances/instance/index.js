@@ -32,10 +32,10 @@ class Controller {
         this.InstancesCacheService
             .deleteInstance(this.container.content.name)
             .then(() => {
-                this.ToastService.success(`Remove ${this.container.content.name} asked.`)
+                this.ToastService.success(`Remove ${this.container.content.name} asked.`);
             })
             .catch((err) => {
-                this.ToastService.error(err.data)
+                this.ToastService.error(err.data);
             });
     }
 }
