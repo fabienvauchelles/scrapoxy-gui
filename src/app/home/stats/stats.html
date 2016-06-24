@@ -15,8 +15,23 @@
                                 </button>
                                 <button type="button"
                                         class="btn btn-default btn-xs"
+                                        ng-class="{'active': vm.scale === 300000}"
+                                        ng-click="vm.scale = 300000">5m
+                                </button>
+                                <button type="button"
+                                        class="btn btn-default btn-xs"
+                                        ng-class="{'active': vm.scale === 600000}"
+                                        ng-click="vm.scale = 600000">10m
+                                </button>
+                                <button type="button"
+                                        class="btn btn-default btn-xs"
                                         ng-class="{'active': vm.scale === 3600000}"
                                         ng-click="vm.scale = 3600000">1h
+                                </button>
+                                <button type="button"
+                                        class="btn btn-default btn-xs"
+                                        ng-class="{'active': vm.scale === 18000000}"
+                                        ng-click="vm.scale = 18000000">5h
                                 </button>
                                 <button type="button"
                                         class="btn btn-default btn-xs"
