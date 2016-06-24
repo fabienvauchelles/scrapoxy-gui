@@ -32,6 +32,14 @@ export default class Controller {
             data: new TimeWindow(self.scale, 60, false, false),
         };
 
+        self.stop_order_count = {
+            columns: {
+                label1: 'Now',
+                label2: 'Cumulated',
+            },
+            data: new TimeWindow(self.scale, 60, true, true),
+        };
+
         // Live stats
         const unwatch = $rootScope.$on('stats', (ev, d) => addData(d));
         $scope.$on('$destroy', unwatch);
@@ -45,6 +53,7 @@ export default class Controller {
                 .then((data) => {
                     self.requests.data.clear(scale);
                     self.flow.data.clear(scale);
+                    self.stop_order_count.data.clear(scale);
 
                     data.forEach(addData);
                 });
@@ -65,6 +74,16 @@ export default class Controller {
                     label1: b2kb(data.flow.bytes_received),
                     label2: b2kb(data.flow.bytes_sent),
                 });
+            }
+
+            if (self.stop_order_count.data) {
+                self.stop_order_count.data.add({
+                    ts: data.ts,
+                    label1: data.stop_order_count.now,
+                    label2: data.stop_order_count.total,
+                });
+
+                data.global.stop_order_count = data.stop_order_count.total;
             }
 
             data.global.kbytes_received = b2kb(data.global.bytes_received);

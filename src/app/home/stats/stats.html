@@ -45,7 +45,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="stats-global-item col-sm-6">
-                                Count of requests: <span ng-bind="vm.global.rq_count"></span>
+                                Count of Requests: <span ng-bind="vm.global.rq_count"></span>
                             </div>
 
                             <div class="stats-global-item col-sm-6">
@@ -56,7 +56,7 @@
 
                         <div class="row">
                             <div class="stats-global-item col-sm-6">
-                                Stop orders: <span ng-bind="vm.global.stop_order_count"></span></li>
+                                Count of Stop orders: <span ng-bind="vm.global.stop_order_count"></span></li>
                             </div>
 
                             <div class="stats-global-item col-sm-6">
@@ -78,7 +78,7 @@
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="panel-title">Requests</div>
+                        <div class="panel-title">Count of Requests</div>
                     </div>
 
                     <div class="panel-body">
@@ -95,6 +95,18 @@
 
                     <div class="panel-body">
                         <timechart columns="vm.flow.columns" data="vm.flow.data"></timechart>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Count of Stop orders</div>
+                    </div>
+
+                    <div class="panel-body">
+                        <timechart columns="vm.stop_order_count.columns" data="vm.stop_order_count.data"></timechart>
                     </div>
                 </div>
             </div>

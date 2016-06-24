@@ -31,11 +31,11 @@ class Controller {
     kill() {
         this.InstancesCacheService
             .deleteInstance(this.container.content.name)
-            .then(
-            () => this.ToastService.success(`Remove ${this.container.content.name} asked.`)
-        )
-            .catch(
-            () => this.ToastService.error(`Cannot ask to remove ${this.container.content.name}`)
-        );
+            .then(() => {
+                this.ToastService.success(`Remove ${this.container.content.name} asked.`)
+            })
+            .catch((err) => {
+                this.ToastService.error(err.data)
+            });
     }
 }
