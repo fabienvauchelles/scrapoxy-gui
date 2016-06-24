@@ -63,4 +63,30 @@ export default class Controller {
                     })
             );
     }
+
+
+    scaleMin() {
+        const scaling = _.cloneDeep(this.scaling);
+        scaling.required = scaling.min;
+
+        this.ScalingCacheService
+            .updateScaling(scaling)
+            .catch((err) => {
+                this.$log.error(err);
+                this.ToastService.error(`Cannot update scaling: ${err}`);
+            });
+    }
+
+
+    scaleMax() {
+        const scaling = _.cloneDeep(this.scaling);
+        scaling.required = scaling.max;
+
+        this.ScalingCacheService
+            .updateScaling(scaling)
+            .catch((err) => {
+                this.$log.error(err);
+                this.ToastService.error(`Cannot update scaling: ${err}`);
+            });
+    }
 }

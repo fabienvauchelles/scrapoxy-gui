@@ -12,9 +12,20 @@
                                 / Required: <span ng-bind="vm.scaling.required"></span>
                                 / Max: <span ng-bind="vm.scaling.max"></span>
 
-                                <button class="btn btn-default btn-xs"
-                                        type="button"
-                                        ng-click="vm.openScalingModal()">Scaling</button>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-default btn-xs"
+                                            type="button"
+                                            ng-click="vm.scaleMax()"><i class="icon icon-starting"></i></button>
+
+                                    <button class="btn btn-default btn-xs"
+                                            type="button"
+                                            ng-click="vm.openScalingModal()">Scaling</button>
+
+                                    <button class="btn btn-default btn-xs"
+                                            type="button"
+                                            ng-click="vm.scaleMin()"><i class="icon icon-stopping"></i></button>
+
+                                </div>
                             </div>
                         </div>
                     </div>
