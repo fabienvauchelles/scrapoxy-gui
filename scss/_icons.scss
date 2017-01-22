@@ -36,6 +36,10 @@ i.icon {
     color: #264670;
 }
 
+.icon-vscale {
+    color: #28bbf1;
+}
+
 .icon-started {
     color: green;
 }
@@ -58,7 +62,7 @@ i.icon {
 }
 
 // Icons definition
-.icon-digitalocean:before {
+.icon-vscale:before {
     content: "\e900";
 }
 
@@ -76,6 +80,10 @@ i.icon {
 
 .icon-ovhcloud:before {
     content: "\e800";
+}
+
+.icon-digitalocean:before {
+    content: "\e901";
 }
 
 .icon-started:before {
@@ -97,7 +105,6 @@ i.icon {
 .icon-stopping:before {
     content: "\f063";
 }
-
 .icon-sign-out:before {
     content: "\f08b";
 }

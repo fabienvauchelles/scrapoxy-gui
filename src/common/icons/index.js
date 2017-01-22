@@ -53,6 +53,10 @@ export default class Service {
                 return 'icon-ovhcloud';
             }
 
+            case 'vscale': {
+                return 'icon-vscale';
+            }
+
             default: {
                 return 'icon-unknown';
             }
