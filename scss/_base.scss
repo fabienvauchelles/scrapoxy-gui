@@ -1,5 +1,11 @@
+html,
 body {
-    margin-top: $navbar-height + 20px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    padding-top: $navbar-height;
 
     font-family: $text-font;
     font-size: $font-size-base;

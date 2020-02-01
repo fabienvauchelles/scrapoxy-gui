@@ -1,10 +1,12 @@
 import instances from './instances';
 import stats from './stats';
+import trafficmap from './trafficmap';
 
 const app = angular.module('myApp.home', [
     'ui.router',
     instances.name,
     stats.name,
+    trafficmap.name,
 ]);
 
 

@@ -7,8 +7,7 @@ export default class Service {
 
 
     getAllInstances() {
-        return this.BASE
-            .getList();
+        return this.BASE.getList();
     }
 
 

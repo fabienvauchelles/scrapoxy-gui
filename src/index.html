@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" href="assets/images/logo32.png" />
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="vendor.css">
     <!-- endbuild -->
 
@@ -30,7 +31,7 @@
         your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ui-view></div>
+    <div class="app" ui-view></div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <script src="../node_modules/lodash/index.js"></script>
@@ -46,6 +47,7 @@
     <script src="../node_modules/d3/d3.js"></script>
     <script src="../node_modules/c3/c3.js"></script>
     <script src="../node_modules/toastr/toastr.js"></script>
+    <script src="../node_modules/leaflet/dist/leaflet.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp/serve,.tmp/partials}) scripts/app.js -->
